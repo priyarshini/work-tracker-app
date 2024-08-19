@@ -27,14 +27,14 @@ if (process.env.NODE_ENV === 'development') {
 const port = process.env.PORT || 5100;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-// app.use(express.static(path.resolve(__dirname, './resource/dist')));
+app.use(express.static(path.resolve(__dirname, './resource/dist')));
 
 app.use('/api/tasks', authenticateUser, tasksRouter);
 app.use('/api/users', usersRouter);
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, './resource/dist', 'index.html'));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './resource/dist', 'index.html'));
+});
 
 
 app.listen(port, () => {
